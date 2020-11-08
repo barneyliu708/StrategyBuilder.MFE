@@ -6,7 +6,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { EventComponent } from './event/event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule} from '@angular/material/button';
@@ -36,6 +38,8 @@ import { UserService } from './shared/services/user/user.service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
@@ -48,6 +52,7 @@ import { UserService } from './shared/services/user/user.service';
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
