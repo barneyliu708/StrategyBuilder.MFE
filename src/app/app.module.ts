@@ -18,6 +18,8 @@ import { StrategyComponent } from './strategy/strategy.component';
 import { UserComponent } from './user/user.component';
 import { EventService } from './shared/services/event/event.service';
 import { RequestInterceptor } from './providers/request.interceptor';
+import { LoginComponent } from './login/login.component';
+import { UserService } from './shared/services/user/user.service';
 
 @NgModule({
 
@@ -26,7 +28,8 @@ import { RequestInterceptor } from './providers/request.interceptor';
     EventComponent,
     HomeComponent,
     StrategyComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { RequestInterceptor } from './providers/request.interceptor';
   ],
   providers: [
     EventService,
+    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
