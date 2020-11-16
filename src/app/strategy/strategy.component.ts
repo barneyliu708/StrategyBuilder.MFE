@@ -13,7 +13,13 @@ export class StrategyComponent implements OnInit {
   constructor(private strategyService: StrategyService) { }
 
   ngOnInit(): void {
-    this.strategyService.getAllEventGroups().subscribe((data: Strategy[]) => {this.strategyList = data; console.log(this.strategyList);} );
+    this.strategyService.getAllEventGroups().subscribe((data: Strategy[]) => {
+      this.strategyList = data; 
+      // for(let i = 0; i < this.strategyList.length; i++) {
+      //   this.strategyList[i]
+      // }
+      console.log(this.strategyList);
+    } );
     
   }
 

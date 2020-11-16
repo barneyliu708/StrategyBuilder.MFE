@@ -25,7 +25,7 @@
             <mat-card-content>
                 <mat-list role="list">
                     <mat-list-option role="listitem" *ngFor="let result of strategy.backTestingResults">
-                        <span><a href="file:///C:/Users/barne/OneDrive/Documents/CPT/HU/Semester%205/GRAD%20695/Project/GRAD-695_AppliedProject.pdf" target="_blank">{{strategy.name}}_{{result.executedOn}}</a> </span><br>
+                        <span><a href="{{result.reportFileUri}}" target="_blank">{{strategy.name}}_{{result.executedOn}}</a> </span><br>
                     </mat-list-option>
                 </mat-list>
             </mat-card-content>
