@@ -22,6 +22,17 @@ import { EventService } from './shared/services/event/event.service';
 import { RequestInterceptor } from './providers/request.interceptor';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './shared/services/user/user.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatNativeDateModule} from '@angular/material';
+// import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import { StrategyExecuteDialog } from './strategy/strategy.execute.component';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 
 @NgModule({
 
@@ -30,6 +41,7 @@ import { UserService } from './shared/services/user/user.service';
     EventComponent,
     HomeComponent,
     StrategyComponent,
+    StrategyExecuteDialog,
     UserComponent,
     LoginComponent
   ],
@@ -41,15 +53,25 @@ import { UserService } from './shared/services/user/user.service';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    FlexLayoutModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    FlexLayoutModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
   ],
   providers: [
     EventService,
     UserService,
+    MatDatepickerModule,
+    MatNativeDateModule,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

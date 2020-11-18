@@ -3,7 +3,7 @@
     <mat-card *ngFor="let strategy of strategyList" style="margin-bottom: 3px;">
         <mat-card-header>
           <mat-card-title>{{ strategy.name }}</mat-card-title>
-          <mat-card-subtitle>{{ strategy.description}}</mat-card-subtitle>
+          <mat-card-subtitle>{{ strategy.description }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <mat-list role="list">
@@ -16,7 +16,7 @@
         <mat-card-actions>
           <button mat-button>Edit</button>
           <button mat-button>Delete</button>
-          <button mat-button>Execute</button>
+          <button mat-raised-button color="primary" (click)="openDialog(strategy)">Execute</button>
         </mat-card-actions>
         <mat-card>
             <mat-card-header>
@@ -25,7 +25,7 @@
             <mat-card-content>
                 <mat-list role="list">
                     <mat-list-option role="listitem" *ngFor="let result of strategy.backTestingResults">
-                        <span><a href="{{result.reportFileUri}}" target="_blank">{{strategy.name}}_{{result.executedOn}}</a> </span><br>
+                        <span><a [href]="sanitize(result.reportFileUri)" target="_blank">{{strategy.name}}_{{result.executedOn}}</a> </span><br>
                     </mat-list-option>
                 </mat-list>
             </mat-card-content>
