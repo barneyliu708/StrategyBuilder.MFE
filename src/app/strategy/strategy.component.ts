@@ -34,6 +34,10 @@ export class StrategyComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
+  getLastItem(thePath:string) {
+    return thePath.substring(thePath.lastIndexOf('/') + 1)
+  }
+
   openDialog(strategy: Strategy): void {
     console.log(strategy);
     const dialogRef = this.dialog.open(StrategyExecuteDialog, {

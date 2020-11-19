@@ -25,7 +25,7 @@
             <mat-card-content>
                 <mat-list role="list">
                     <mat-list-option role="listitem" *ngFor="let result of strategy.backTestingResults">
-                        <span><a [href]="sanitize(result.reportFileUri)" target="_blank">{{strategy.name}}_{{result.executedOn}}</a> </span><br>
+                        <span><a [href]="sanitize(result.reportFileUri)" target="_blank">{{getLastItem(result.reportFileUri)}}</a> </span><br>
                     </mat-list-option>
                 </mat-list>
             </mat-card-content>
