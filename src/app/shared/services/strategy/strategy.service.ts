@@ -10,7 +10,7 @@ export class StrategyService {
 
   constructor(private http: HttpClient) { }
 
-  getAllEventGroups(): Observable<Strategy[]> {
+  getAllStrategies(): Observable<Strategy[]> {
       return this.http.get<Strategy[]>("Strategy");
   }
 
@@ -21,5 +21,11 @@ export class StrategyService {
     .set('symbol', symbol)
     .set('strategyId', strategyId.toString());
     return this.http.get<any>("BackTesting/Execute", { params });
+  }
+
+  deleteReport(reportId: number): Observable<any> {
+    let httpParams = new HttpParams().set('resultID', reportId.toString());
+    let options = { params: httpParams };
+    return this.http.delete("BackTesting", options);
   }
 }
