@@ -25,8 +25,8 @@
             <mat-card-content>
                 <mat-list role="list">
                     <mat-list-option role="listitem" *ngFor="let result of strategy.backTestingResults">
-                        <span style="padding: 3px">
-                            <button mat-mini-fab color="warn" (click)="deleteReport(result)" aria-label="Example icon button with a delete icon">
+                        <span style="padding: 5px">
+                            <button mat-mini-fab color="basic" (click)="deleteReport(result)" aria-label="Example icon button with a delete icon">
                                 <mat-icon>delete</mat-icon>
                             </button>
                             <a mat-list-item style="padding-left: 5px;" [href]="sanitize(result.reportFileUri)" target="_blank">{{getLastItem(result.reportFileUri)}}</a> 
