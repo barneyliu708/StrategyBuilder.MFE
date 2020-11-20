@@ -18,7 +18,7 @@
           <button mat-button>Delete</button>
           <button mat-raised-button color="primary" (click)="openDialog(strategy)">Execute</button>
         </mat-card-actions>
-        <mat-card>
+        <mat-card *ngIf="strategy.backTestingResults.length !== 0">
             <mat-card-header>
                 <mat-card-title>Back-testing History</mat-card-title>
             </mat-card-header>
