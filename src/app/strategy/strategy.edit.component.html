@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{strategy.name}}</h1>
+<div mat-dialog-content>
+  <p>{{strategy.description}}</p>
+  <!-- <mat-form-field style="display: block">
+    <mat-label>Symbol</mat-label>
+    <input matInput [(ngModel)]="data.symbol">
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="display: block">
+    <mat-label>Verbose datepicker</mat-label>
+    <input matInput [matDatepicker]="dpfrom" [(ngModel)]=data.startFrom>
+    <mat-datepicker-toggle matSuffix [for]="dpfrom"></mat-datepicker-toggle>
+    <mat-datepicker #dpfrom></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="display: block">
+    <mat-label>Verbose datepicker</mat-label>
+    <input matInput [matDatepicker]="dpto" [(ngModel)]=data.startTo>
+    <mat-datepicker-toggle matSuffix [for]="dpto"></mat-datepicker-toggle>
+    <mat-datepicker #dpto></mat-datepicker>
+  </mat-form-field> -->
+  <mat-list role="list">
+    <mat-list-option role="listitem" *ngFor="let eventgroup of strategy.eventGroups" style="display: block">
+        <button mat-mini-fab color="basic" (click)="deleteValue(eventgroup)" aria-label="Example icon button with a delete icon">
+           <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+        <span style="padding-left: 10px;">{{ eventgroup.name }} </span>
+        <!-- <p style="color: gainsboro;">{{ eventgroup.description }}</p> -->
+    </mat-list-option>
+  </mat-list> 
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Included Events</mat-label>
+    <mat-select (selectionChange)="valueSelected($event.value)">
+      <mat-option *ngFor="let gp of eventGroupList" [value]="gp">
+        {{gp.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="strategy" cdkFocusInitial>Ok</button>
+</div>

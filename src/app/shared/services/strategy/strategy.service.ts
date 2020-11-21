@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Strategy } from '../../models/strategy.model';
 import { Observable } from 'rxjs';
+import { EventGroup } from '../../models/event-group.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,12 @@ export class StrategyService {
     let httpParams = new HttpParams().set('resultID', reportId.toString());
     let options = { params: httpParams };
     return this.http.delete("BackTesting", options);
+  }
+
+  updateEventGroupsInStrategy(strategyId: number, newEventGroupIds: number[]): Observable<any>{
+    // const params = new HttpParams()
+    //                 .set('strategyId', strategyId.toString());
+
+    return this.http.put(`Strategy/${strategyId}`, newEventGroupIds)
   }
 }

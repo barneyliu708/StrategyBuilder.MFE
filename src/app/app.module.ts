@@ -33,6 +33,9 @@ import { StrategyExecuteDialog } from './strategy/strategy.execute.component';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import { StrategyEditDialog } from './strategy/strategy.edit.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
 
@@ -42,6 +45,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     HomeComponent,
     StrategyComponent,
     StrategyExecuteDialog,
+    StrategyEditDialog,
     UserComponent,
     LoginComponent
   ],
@@ -62,6 +66,8 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatSelectModule,
+    MatExpansionModule,
     FlexLayoutModule,
     CdkStepperModule,
     CdkTableModule,

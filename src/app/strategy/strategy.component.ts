@@ -5,6 +5,9 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData, StrategyExecuteDialog } from './strategy.execute.component';
 import { BackTestingResult } from '../shared/models/backtestingresult.model';
+import { StrategyEditDialog } from './strategy.edit.component';
+import { EventService } from '../shared/services/event/event.service';
+import { EventGroup } from '../shared/models/event-group.model';
 
 @Component({
   selector: 'app-strategy',
@@ -14,15 +17,18 @@ import { BackTestingResult } from '../shared/models/backtestingresult.model';
 export class StrategyComponent implements OnInit {
 
   strategyList: Strategy[];
+  eventgroupList: EventGroup[];
   animal: string;
   name: string;
 
   constructor(private strategyService: StrategyService,
+              private eventService: EventService,
               private sanitizer: DomSanitizer,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAllStrategy();
+    this.eventService.getAllEventGroups().subscribe((data: EventGroup[]) => this.eventgroupList = data);
 
     this.name = "nanke";
     this.animal = "dogg"
@@ -43,7 +49,7 @@ export class StrategyComponent implements OnInit {
     })
   }
 
-  openDialog(strategy: Strategy): void {
+  openExecuteDialog(strategy: Strategy): void {
     console.log(strategy);
     const dialogRef = this.dialog.open(StrategyExecuteDialog, {
       width: '60%',
@@ -67,6 +73,32 @@ export class StrategyComponent implements OnInit {
     });
   }
 
+  openEditDialog(strategy: Strategy): void {
+    var strategyCopy = JSON.parse(JSON.stringify(strategy));
+    const dialogRef = this.dialog.open(StrategyEditDialog, {
+      width: '60%',
+      data: { 
+        strategy: strategyCopy, 
+        allEventGroups: this.eventgroupList
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result: Strategy) => {
+      
+      // this.animal = result;
+      console.log('The dialog was closed after save');
+      console.log(result);
+      this.strategyService.updateEventGroupsInStrategy(result.id, result.eventGroups.map(a => a.id)).subscribe(response => {
+        this.getAllStrategy();
+      })
+      // this.strategyService.executeStrategy(result.startFrom, result.startTo, result.symbol, strategy.id).subscribe(response => {
+      //   console.log(response);
+      //   this.getAllStrategy();
+      // });
+      
+    });
+  }
+  
   getAllStrategy() {
     this.strategyService.getAllStrategies().subscribe((data: Strategy[]) => {
       this.strategyList = data; 
