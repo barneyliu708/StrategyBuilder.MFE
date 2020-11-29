@@ -7,13 +7,13 @@ import { StrategyComponent } from './strategy/strategy.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/events', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'events', component: EventComponent},
   {path: 'strategies', component: StrategyComponent},
   {path: 'profile', component: UserComponent},
-  {path: '**', redirectTo: '/home', pathMatch: 'full'}
+  {path: '**', redirectTo: '/events', pathMatch: 'full'}
 ];
 
 @NgModule({

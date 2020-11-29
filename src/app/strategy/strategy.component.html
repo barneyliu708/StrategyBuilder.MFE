@@ -1,7 +1,9 @@
 <div style="margin: 15px;">
-    <h1 class="mat-headline">Strategies <button style="margin-left: 5px;" mat-mini-fab color="basic" aria-label="Example icon button with a plus one icon">
+    <h1 class="mat-headline">Strategies 
+        <!-- <button style="margin-left: 5px;" mat-mini-fab color="basic" aria-label="Example icon button with a plus one icon">
         <mat-icon>playlist_add</mat-icon>
-      </button></h1>
+        </button> -->
+    </h1>
     <mat-card *ngFor="let strategy of strategyList" style="margin-bottom: 3px;">
         <mat-card-header>
           <mat-card-title>{{ strategy.name }}</mat-card-title>
@@ -17,7 +19,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-button (click)="openEditDialog(strategy)">Edit</button>
-          <button mat-button>Delete</button>
+          <!-- <button mat-button>Delete</button> -->
           <button mat-raised-button color="primary" (click)="openExecuteDialog(strategy)">Execute</button>
         </mat-card-actions>
         <mat-card *ngIf="strategy.backTestingResults.length !== 0">
