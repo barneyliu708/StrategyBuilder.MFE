@@ -1,0 +1,83 @@
+Folder PATH listing for volume Windows
+Volume serial number is 00C1-AED2
+
+src
+|   favicon.ico
+|   index.html
+|   main.ts
+|   output.doc
+|   polyfills.ts
+|   styles.scss
+|   test.ts
+|   
++---app
+|   |   app-routing.module.ts
+|   |   app.component.html
+|   |   app.component.scss
+|   |   app.component.spec.ts
+|   |   app.component.ts
+|   |   app.module.ts
+|   |   
+|   +---event
+|   |       event.component.html
+|   |       event.component.scss
+|   |       event.component.spec.ts
+|   |       event.component.ts
+|   |       
+|   +---home
+|   |       home.component.html
+|   |       home.component.scss
+|   |       home.component.spec.ts
+|   |       home.component.ts
+|   |       
+|   +---login
+|   |       login.component.html
+|   |       login.component.scss
+|   |       login.component.spec.ts
+|   |       login.component.ts
+|   |       
+|   +---providers
+|   |       request.interceptor.ts
+|   |       
+|   +---shared
+|   |   +---models
+|   |   |       backtestingresult.model.ts
+|   |   |       event-group.model.ts
+|   |   |       strategy.model.ts
+|   |   |       
+|   |   \---services
+|   |       +---event
+|   |       |       event.service.spec.ts
+|   |       |       event.service.ts
+|   |       |       
+|   |       +---strategy
+|   |       |       strategy.service.spec.ts
+|   |       |       strategy.service.ts
+|   |       |       
+|   |       \---user
+|   |               user.service.spec.ts
+|   |               user.service.ts
+|   |               
+|   +---strategy
+|   |       strategy.component.html
+|   |       strategy.component.scss
+|   |       strategy.component.spec.ts
+|   |       strategy.component.ts
+|   |       strategy.edit.component.html
+|   |       strategy.edit.component.ts
+|   |       strategy.execute.component.html
+|   |       strategy.execute.component.ts
+|   |       
+|   \---user
+|           user.component.html
+|           user.component.scss
+|           user.component.spec.ts
+|           user.component.ts
+|           
++---assets
+|       .gitkeep
+|       
+\---environments
+        environment.prod.ts
+        environment.ts
+        
