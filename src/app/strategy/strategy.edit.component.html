@@ -18,11 +18,11 @@
     <mat-datepicker #dpto></mat-datepicker>
   </mat-form-field> -->
   <mat-list role="list">
-    <mat-list-option role="listitem" *ngFor="let eventgroup of strategy.eventGroups" style="display: block">
-        <button mat-mini-fab color="basic" (click)="deleteValue(eventgroup)" aria-label="Example icon button with a delete icon">
+    <mat-list-option role="listitem" *ngFor="let relationship of strategy.joinStrategyEventGroups" style="display: block">
+        <button mat-mini-fab color="basic" (click)="deleteValue(relationship.eventGroup)" aria-label="Example icon button with a delete icon">
            <mat-icon>remove_circle_outline</mat-icon>
         </button>
-        <span style="padding-left: 10px;">{{ eventgroup.name }} </span>
+        <span style="padding-left: 10px;">{{ relationship.eventGroup.name }} </span>
         <!-- <p style="color: gainsboro;">{{ eventgroup.description }}</p> -->
     </mat-list-option>
   </mat-list> 

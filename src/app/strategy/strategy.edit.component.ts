@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventGroup } from '../shared/models/event-group.model';
+import { StrategyEventGroup } from '../shared/models/strategy-eventgroup.model';
 import { Strategy } from '../shared/models/strategy.model';
 import { StrategyService } from '../shared/services/strategy/strategy.service';
 
@@ -36,21 +37,23 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
     // }
 
     valueSelected(valueSelected: EventGroup) {
-      const itemToAddIndex = this.strategy.eventGroups.findIndex(function(item) {
-        return item.id === valueSelected.id;
+      const itemToAddIndex = this.strategy.joinStrategyEventGroups.findIndex(function(item) {
+        return item.eventGroup.id === valueSelected.id;
       });
       if(itemToAddIndex === -1){
-        this.strategy.eventGroups.push(valueSelected);
+        let newrelationship = new StrategyEventGroup();
+        newrelationship.eventGroup = valueSelected;
+        this.strategy.joinStrategyEventGroups.push(newrelationship);
       }
       console.log(valueSelected);
     }
 
     deleteValue(valueDelete: EventGroup) {
-      const itemToRemoveIndex = this.strategy.eventGroups.findIndex(function(item) {
-        return item.id === valueDelete.id;
+      const itemToRemoveIndex = this.strategy.joinStrategyEventGroups.findIndex(function(item) {
+        return item.eventGroup.id === valueDelete.id;
       });
       if(itemToRemoveIndex !== -1){
-        this.strategy.eventGroups.splice(itemToRemoveIndex, 1);
+        this.strategy.joinStrategyEventGroups.splice(itemToRemoveIndex, 1);
       }
       console.log(valueDelete);
     }

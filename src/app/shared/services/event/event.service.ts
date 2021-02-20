@@ -12,6 +12,6 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getAllEventGroups(): Observable<EventGroup[]> {
-      return this.http.get<EventGroup[]>("EventGroup");
+      return this.http.get<EventGroup[]>("EventGroup/1");
   }
 }

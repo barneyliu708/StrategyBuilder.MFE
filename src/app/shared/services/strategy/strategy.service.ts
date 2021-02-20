@@ -12,7 +12,7 @@ export class StrategyService {
   constructor(private http: HttpClient) { }
 
   getAllStrategies(): Observable<Strategy[]> {
-      return this.http.get<Strategy[]>("Strategy");
+      return this.http.get<Strategy[]>("Strategy/1");
   }
 
   executeStrategy(datefrom: Date, dateto: Date, symbol: string, strategyId: number): Observable<any> {
@@ -34,6 +34,6 @@ export class StrategyService {
     // const params = new HttpParams()
     //                 .set('strategyId', strategyId.toString());
 
-    return this.http.put(`Strategy/${strategyId}`, newEventGroupIds)
+    return this.http.put(`Strategy/${strategyId}/eventgroups`, newEventGroupIds)
   }
 }

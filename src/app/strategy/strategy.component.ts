@@ -28,7 +28,10 @@ export class StrategyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllStrategy();
-    this.eventService.getAllEventGroups().subscribe((data: EventGroup[]) => this.eventgroupList = data);
+    this.eventService.getAllEventGroups().subscribe((data: EventGroup[]) => {
+      this.eventgroupList = data;
+      console.log(this.strategyList);
+    });
 
     this.name = "nanke";
     this.animal = "dogg"
@@ -88,7 +91,7 @@ export class StrategyComponent implements OnInit {
       // this.animal = result;
       console.log('The dialog was closed after save');
       console.log(result);
-      this.strategyService.updateEventGroupsInStrategy(result.id, result.eventGroups.map(a => a.id)).subscribe(response => {
+      this.strategyService.updateEventGroupsInStrategy(result.id, result.joinStrategyEventGroups.map(a => a.eventGroup.id)).subscribe(response => {
         this.getAllStrategy();
       })
       // this.strategyService.executeStrategy(result.startFrom, result.startTo, result.symbol, strategy.id).subscribe(response => {

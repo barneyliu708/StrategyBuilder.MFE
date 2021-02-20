@@ -13,9 +13,9 @@
             <mat-card>
                 <mat-card-content>
                     <mat-list role="list">
-                        <mat-list-option role="listitem" *ngFor="let eventgroup of strategy.eventGroups">
-                            {{ eventgroup.name }} 
-                            <p style="color: gainsboro;">{{ eventgroup.description }}</p>
+                        <mat-list-option role="listitem" *ngFor="let relationship of strategy.joinStrategyEventGroups">
+                            {{ relationship.eventGroup.name }} 
+                            <p style="color: gainsboro;">{{ relationship.eventGroup.description }}</p>
                         </mat-list-option>
                     </mat-list>
                 </mat-card-content>
