@@ -1,0 +1,100 @@
+<h1 mat-dialog-title>New Event Group</h1>
+<div mat-dialog-content>
+  <mat-form-field style="display: block">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="eventGroup.name">
+  </mat-form-field>
+  <mat-form-field style="display: block">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="eventGroup.description">
+  </mat-form-field>
+  <div style="padding: 5px;">
+    <mat-slide-toggle [(ngModel)]="isExpressionEnabled">Enable Expression</mat-slide-toggle>
+  </div>
+  <!-- <mat-form-field *ngIf="isExpressionEnabled" appearance="fill" style="display: block">
+    <mat-label>Expression:</mat-label>
+    <textarea matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field> -->
+  <div *ngIf="isExpressionEnabled">
+    <mat-form-field appearance="fill">
+      <mat-label></mat-label>
+      <mat-select>
+        <mat-option value="option">Current Price</mat-option>
+        <mat-option value="option">Mean Price of 5 Days</mat-option>
+        <mat-option value="option">Mean Price of 30 Days</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select me</mat-label>
+      <mat-select>
+        <mat-option value="option">>=</mat-option>
+        <mat-option value="option"><=</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label></mat-label>
+      <mat-select>
+        <mat-option value="option">Current Price</mat-option>
+        <mat-option value="option">Mean Price of 5 Days</mat-option>
+        <mat-option value="option">Mean Price of 30 Days</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  
+  <mat-form-field *ngIf="!isExpressionEnabled" appearance="fill" style="display: block">
+    <mat-label>History of the Event</mat-label>
+    <input matInput [matDatepicker]="dpevent" 
+                    (dateChange)="onEventDateChange($event)">
+    <mat-datepicker-toggle matSuffix [for]="dpevent"></mat-datepicker-toggle>
+    <mat-datepicker #dpevent></mat-datepicker>
+  </mat-form-field>
+  <!-- <mat-form-field appearance="fill" style="display: block">
+    <mat-label>Verbose datepicker</mat-label>
+    <input matInput [matDatepicker]="dpto" [(ngModel)]=data.startTo>
+    <mat-datepicker-toggle matSuffix [for]="dpto"></mat-datepicker-toggle>
+    <mat-datepicker #dpto></mat-datepicker>
+  </mat-form-field> -->
+  <!-- <mat-list role="list">
+    <mat-list-option role="listitem" *ngFor="let relationship of strategy.joinStrategyEventGroups" style="display: block">
+        <button mat-mini-fab color="basic" (click)="deleteValue(relationship.eventGroup)" aria-label="Example icon button with a delete icon">
+           <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+        <span style="padding-left: 10px;">{{ relationship.eventGroup.name }} </span>
+    </mat-list-option>
+  </mat-list>  -->
+  <br>
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Included Events</mat-label>
+    <mat-select (selectionChange)="valueSelected($event.value)">
+      <mat-option *ngFor="let gp of eventGroupList" [value]="gp">
+        {{gp.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+  <mat-card-content>
+    <mat-list role="list">
+        <mat-list-option role="listitem" *ngFor="let event of eventGroup.events">
+            {{ event.occurrence | date: 'yyyy-MM-dd, hh:mm a'}}
+            <br>
+        </mat-list-option>
+    </mat-list>
+  </mat-card-content>
+  <mat-form-field class="columns">
+    <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+    <ng-template #newFile>
+        <mat-label>Choose file to be imported</mat-label>
+    </ng-template>
+    <input matInput disabled>
+    <button mat-icon-button matSuffix (click)="fileInput.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+    <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="eventGroup" cdkFocusInitial>Ok</button>
+</div>

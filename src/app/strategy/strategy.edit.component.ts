@@ -16,14 +16,17 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
     strategy: Strategy;
     eventGroupList: EventGroup[];
 
-    constructor(
-      public dialogRef: MatDialogRef<StrategyEditDialog>,
-      @Inject(MAT_DIALOG_DATA) 
-      public data: any,
-      private strategyService: StrategyService) {
-        this.strategy = data.strategy;
-        this.eventGroupList = data.allEventGroups;
-      }
+    constructor(public dialogRef: MatDialogRef<StrategyEditDialog>,
+                @Inject(MAT_DIALOG_DATA) 
+                public data: any,
+                private strategyService: StrategyService) {
+      this.strategy = data.strategy;
+      this.eventGroupList = data.allEventGroups;
+
+      this.strategy.joinStrategyEventGroups.forEach(r => {
+        r.action = 'buy'
+      })
+    }
   
     onNoClick(): void {
       this.dialogRef.close();
@@ -36,7 +39,7 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
     //   this.dialogRef.close();
     // }
 
-    valueSelected(valueSelected: EventGroup) {
+    eventGroupSelected(valueSelected: EventGroup) {
       const itemToAddIndex = this.strategy.joinStrategyEventGroups.findIndex(function(item) {
         return item.eventGroup.id === valueSelected.id;
       });
@@ -46,6 +49,10 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
         this.strategy.joinStrategyEventGroups.push(newrelationship);
       }
       console.log(valueSelected);
+    }
+
+    tradeActionSelected(action: string) {
+      console.log("action selected" + action);
     }
 
     deleteValue(valueDelete: EventGroup) {

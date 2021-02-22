@@ -6,13 +6,13 @@
     <input matInput [(ngModel)]="data.symbol">
   </mat-form-field>
   <mat-form-field appearance="fill" style="display: block">
-    <mat-label>Verbose datepicker</mat-label>
+    <mat-label>Start Date</mat-label>
     <input matInput [matDatepicker]="dpfrom" [(ngModel)]=data.startFrom>
     <mat-datepicker-toggle matSuffix [for]="dpfrom"></mat-datepicker-toggle>
     <mat-datepicker #dpfrom></mat-datepicker>
   </mat-form-field>
   <mat-form-field appearance="fill" style="display: block">
-    <mat-label>Verbose datepicker</mat-label>
+    <mat-label>End Date</mat-label>
     <input matInput [matDatepicker]="dpto" [(ngModel)]=data.startTo>
     <mat-datepicker-toggle matSuffix [for]="dpto"></mat-datepicker-toggle>
     <mat-datepicker #dpto></mat-datepicker>

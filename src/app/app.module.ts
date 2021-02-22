@@ -24,7 +24,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './shared/services/user/user.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // import {MatNativeDateModule} from '@angular/material';
 // import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatNativeDateModule } from '@angular/material/core';
@@ -36,6 +37,9 @@ import {CdkTreeModule} from '@angular/cdk/tree';
 import { StrategyEditDialog } from './strategy/strategy.edit.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { EventNewDialog } from './event/event-new/event-new.component';
+import { CommonModule } from '@angular/common';
+import { EventEditDialog } from './event/event-edit/event-edit.component';
 
 @NgModule({
 
@@ -47,7 +51,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     StrategyExecuteDialog,
     StrategyEditDialog,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    EventNewDialog,
+    EventEditDialog
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatDialogModule,
@@ -68,6 +75,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule,
     MatSelectModule,
     MatExpansionModule,
+    MatSlideToggleModule,
     FlexLayoutModule,
     CdkStepperModule,
     CdkTableModule,

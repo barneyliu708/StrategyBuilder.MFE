@@ -23,13 +23,20 @@
            <mat-icon>remove_circle_outline</mat-icon>
         </button>
         <span style="padding-left: 10px;">{{ relationship.eventGroup.name }} </span>
+        <mat-form-field appearance="fill">
+          <mat-label>Action</mat-label>
+          <mat-select [(ngModel)]="relationship.action">
+            <mat-option value="buy">Buy</mat-option>
+            <mat-option value="sell">Sell</mat-option>
+          </mat-select>
+        </mat-form-field>
         <!-- <p style="color: gainsboro;">{{ eventgroup.description }}</p> -->
     </mat-list-option>
   </mat-list> 
   <br>
   <mat-form-field appearance="fill">
     <mat-label>Included Events</mat-label>
-    <mat-select (selectionChange)="valueSelected($event.value)">
+    <mat-select (selectionChange)="eventGroupSelected($event.value)">
       <mat-option *ngFor="let gp of eventGroupList" [value]="gp">
         {{gp.name}}
       </mat-option>
