@@ -16,6 +16,7 @@ export class EventNewDialog {
   eventlist: Date[]
   isExpressionEnabled: boolean
   selectedFiles: any
+  stock: any
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<EventNewDialog>,

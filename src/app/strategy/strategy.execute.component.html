@@ -1,9 +1,21 @@
-<h1 mat-dialog-title>{{data.strategyName}}</h1>
+<h1 mat-dialog-title>Back-Testing</h1>
+<h2 mat-dialog-title>{{data.strategyName}}</h2>
 <div mat-dialog-content>
   <p>{{data.strategyDescription}}</p>
-  <mat-form-field style="display: block">
+  <mat-form-field appearance="fill" style="display: block">
     <mat-label>Symbol</mat-label>
-    <input matInput [(ngModel)]="data.symbol">
+    <mat-chip-list #chipList aria-label="Symbol selection">
+      <mat-chip *ngFor="let symbol of symbolList" selectable="true"
+               removable="true" (removed)="remove(symbol)">
+        {{symbol}}
+        <mat-icon matChipRemove >cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Symbol..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             matChipInputAddOnBlur="true"
+             (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
   </mat-form-field>
   <mat-form-field appearance="fill" style="display: block">
     <mat-label>Start Date</mat-label>
@@ -19,6 +31,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Execute</button>
 </div>

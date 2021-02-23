@@ -14,6 +14,7 @@ export class EventEditDialog {
   eventGroup: EventGroup
   isExpressionEnabled: boolean
   selectedFiles: any
+  stock: any
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<EventEditDialog>,

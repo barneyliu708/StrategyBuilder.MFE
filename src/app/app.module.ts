@@ -30,6 +30,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
+import {MatChipsModule} from '@angular/material/chips';
 import { StrategyExecuteDialog } from './strategy/strategy.execute.component';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -76,6 +77,7 @@ import { EventEditDialog } from './event/event-edit/event-edit.component';
     MatSelectModule,
     MatExpansionModule,
     MatSlideToggleModule,
+    MatChipsModule,
     FlexLayoutModule,
     CdkStepperModule,
     CdkTableModule,

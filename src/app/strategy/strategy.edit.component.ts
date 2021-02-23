@@ -23,9 +23,9 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
       this.strategy = data.strategy;
       this.eventGroupList = data.allEventGroups;
 
-      this.strategy.joinStrategyEventGroups.forEach(r => {
-        r.action = 'buy'
-      })
+      // this.strategy.joinStrategyEventGroups.forEach(r => {
+      //   r.action = 'buy'
+      // })
     }
   
     onNoClick(): void {

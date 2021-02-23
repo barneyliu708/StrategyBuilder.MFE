@@ -6,7 +6,7 @@
   </mat-form-field>
   <mat-form-field style="display: block">
     <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="eventGroup.description">
+    <textarea matInput cdkTextareaAutosize [(ngModel)]="eventGroup.description"></textarea>
   </mat-form-field>
   <div style="padding: 5px;">
     <mat-slide-toggle [(ngModel)]="isExpressionEnabled">Enable Expression</mat-slide-toggle>
@@ -19,6 +19,10 @@
               cdkAutosizeMaxRows="5"></textarea>
   </mat-form-field> -->
   <div *ngIf="isExpressionEnabled">
+    <mat-form-field appearance="fill">
+      <mat-label>Stock</mat-label>
+      <input matInput [(ngModel)]="stock">
+    </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label></mat-label>
       <mat-select>

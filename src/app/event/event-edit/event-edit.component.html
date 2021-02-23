@@ -6,7 +6,7 @@
   </mat-form-field>
   <mat-form-field style="display: block">
     <mat-label>Description</mat-label>
-    <input matInput [(ngModel)]="eventGroup.description">
+    <textarea matInput cdkTextareaAutosize [(ngModel)]="eventGroup.description"></textarea>
   </mat-form-field>
   <div style="padding: 5px;">
     <mat-slide-toggle [(ngModel)]="isExpressionEnabled">Enable Expression</mat-slide-toggle>
@@ -20,11 +20,15 @@
   </mat-form-field> -->
   <div *ngIf="isExpressionEnabled">
     <mat-form-field appearance="fill">
+      <mat-label>Stock</mat-label>
+      <input matInput [(ngModel)]="stock">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label></mat-label>
       <mat-select>
         <mat-option value="option">Current Price</mat-option>
-        <mat-option value="option">Mean Price of 5 Days</mat-option>
-        <mat-option value="option">Mean Price of 30 Days</mat-option>
+        <mat-option value="option">5 Days Moving Average</mat-option>
+        <mat-option value="option">30 Days Moving Average</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -38,12 +42,12 @@
       <mat-label></mat-label>
       <mat-select>
         <mat-option value="option">Current Price</mat-option>
-        <mat-option value="option">Mean Price of 5 Days</mat-option>
-        <mat-option value="option">Mean Price of 30 Days</mat-option>
+        <mat-option value="option">5 Days Moving Average</mat-option>
+        <mat-option value="option">30 Days Moving Average</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-form-field *ngIf="!isExpressionEnabled" appearance="fill" style="display: block">
+  <mat-form-field appearance="fill" style="display: block">
     <mat-label>History of the Event</mat-label>
     <input matInput [matDatepicker]="dpevent" 
                     (dateChange)="onEventDateChange($event)">
