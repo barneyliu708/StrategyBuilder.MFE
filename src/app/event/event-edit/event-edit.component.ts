@@ -1,8 +1,16 @@
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { Component, Inject } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { EventGroup } from 'src/app/shared/models/event-group.model';
 import { EventOccurance } from 'src/app/shared/models/event.model';
+import { Indicator } from 'src/app/shared/models/indicator.model';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'event-edit',
@@ -11,16 +19,28 @@ import { EventOccurance } from 'src/app/shared/models/event.model';
 })
 export class EventEditDialog {
 
-  eventGroup: EventGroup
-  isExpressionEnabled: boolean
-  selectedFiles: any
-  stock: any
+  eventGroup: EventGroup;
+  indicatorList: Indicator[];
+  filteredIndicators: Observable<Indicator[]>;
+  selectedIndicators: Indicator[];
+  isExpressionEnabled: boolean;
+  selectedFiles: any;
+  stock: any;
+
+  indicatorCtrl = new FormControl();
+  @ViewChild('indicatorInput') indicatorInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<EventEditDialog>,
               @Inject(MAT_DIALOG_DATA) 
               public data: any) {
     this.eventGroup = data.eventGroup;
+    this.indicatorList = data.indicatorList;
+    this.selectedIndicators = [];
+    // this.filteredIndicators = this.indicatorCtrl.valueChanges.pipe(
+    //   startWith(null),
+    //   map((fruit: string | null) => fruit ? this._filter(fruit) : this.indicatorList.slice()));
     if (this.eventGroup.expression) {
       this.isExpressionEnabled = true;
     }
@@ -40,7 +60,48 @@ export class EventEditDialog {
     });
   }
 
+  onSelecteIndicator(event: MatAutocompleteSelectedEvent): void {
+    console.log(event);
+    this.selectedIndicators.push(event.option.value);
+    this.indicatorInput.nativeElement.value = '';
+    this.indicatorCtrl.setValue(null);
+  }
+
+  onAddIndicator(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    console.log(event);
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      let newIndicator = new Indicator();
+      newIndicator.text = value.trim();
+      newIndicator.key = '${symbo:' + value.trim() + '}';
+      console.log('add successfully');
+      this.selectedIndicators.push(newIndicator);
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    this.indicatorInput.nativeElement.value = '';
+    this.indicatorCtrl.setValue(null);
+  }
+
   selectFile(event) {
     this.selectedFiles = event.target.files;
+  }
+
+  private _filter(value: string): Indicator[] {
+
+    if (!value) {
+      return this.indicatorList;
+    }
+
+    const filterValue = value.toLowerCase();
+
+    return this.indicatorList.filter(ind => ind.text.toLowerCase().indexOf(filterValue) === 0);
   }
 }

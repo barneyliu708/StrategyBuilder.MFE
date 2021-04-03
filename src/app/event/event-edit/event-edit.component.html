@@ -19,6 +19,34 @@
               cdkAutosizeMaxRows="5"></textarea>
   </mat-form-field> -->
   <div *ngIf="isExpressionEnabled">
+    <mat-form-field class="example-chip-list" style="display: block">
+      <mat-label>Expression</mat-label>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let selectedIndicator of selectedIndicators"
+          [selectable]="selectable"
+          removable="true"
+          (removed)="remove(selectedIndicator)">
+          {{selectedIndicator.text}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="New fruit..."
+          #indicatorInput
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (keydown.enter)="onAddIndicator(indicatorInput)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelecteIndicator($event)">
+        <mat-option *ngFor="let indicator of indicatorList" [value]="indicator">
+          {{indicator.text}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  
+  <!-- <div *ngIf="isExpressionEnabled">
     <mat-form-field appearance="fill">
       <mat-label>Stock</mat-label>
       <input matInput [(ngModel)]="stock">
@@ -46,7 +74,7 @@
         <mat-option value="option">30 Days Moving Average</mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
+  </div> -->
   <mat-form-field appearance="fill" style="display: block">
     <mat-label>History of the Event</mat-label>
     <input matInput [matDatepicker]="dpevent" 

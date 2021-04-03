@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // import {MatNativeDateModule} from '@angular/material';
 // import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MatNativeDateModule } from '@angular/material/core';
@@ -78,6 +79,7 @@ import { EventEditDialog } from './event/event-edit/event-edit.component';
     MatExpansionModule,
     MatSlideToggleModule,
     MatChipsModule,
+    MatAutocompleteModule,
     FlexLayoutModule,
     CdkStepperModule,
     CdkTableModule,
