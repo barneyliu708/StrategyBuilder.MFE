@@ -11,6 +11,7 @@ import { Indicator } from 'src/app/shared/models/indicator.model';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { EventService } from 'src/app/shared/services/event/event.service';
 
 @Component({
   selector: 'event-edit',
@@ -34,7 +35,8 @@ export class EventEditDialog {
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<EventEditDialog>,
               @Inject(MAT_DIALOG_DATA) 
-              public data: any) {
+              public data: any,
+              private eventService: EventService) {
     this.eventGroup = data.eventGroup;
     this.indicatorList = data.indicatorList;
     this.selectedIndicators = [];
@@ -63,6 +65,8 @@ export class EventEditDialog {
   onSelecteIndicator(event: MatAutocompleteSelectedEvent): void {
     console.log(event);
     this.selectedIndicators.push(event.option.value);
+    this.eventGroup.expression = this.eventService.convertIndicatorsToExpression(this.selectedIndicators);
+    
     this.indicatorInput.nativeElement.value = '';
     this.indicatorCtrl.setValue(null);
   }
@@ -80,6 +84,7 @@ export class EventEditDialog {
       newIndicator.key = '${symbo:' + value.trim() + '}';
       console.log('add successfully');
       this.selectedIndicators.push(newIndicator);
+      this.eventGroup.expression = this.eventService.convertIndicatorsToExpression(this.selectedIndicators);
     }
 
     // Reset the input value

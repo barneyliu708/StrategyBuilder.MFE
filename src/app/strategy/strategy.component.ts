@@ -69,7 +69,11 @@ export class StrategyComponent implements OnInit {
       // this.animal = result;
       console.log('The dialog was closed ');
       console.log(result);
-      this.strategyService.executeStrategy(result.startFrom, result.startTo, result.symbol, strategy.id).subscribe(response => {
+      // this.strategyService.executeStrategy(result.startFrom, result.startTo, result.symbolList, strategy.id).subscribe(response => {
+      //   console.log(response);
+      //   this.getAllStrategy();
+      // });
+      this.strategyService.executeStrategy(result.startFrom, result.startTo, result.symbolList, strategy.id).subscribe(response => {
         console.log(response);
         this.getAllStrategy();
       });
@@ -91,9 +95,12 @@ export class StrategyComponent implements OnInit {
       // this.animal = result;
       console.log('The dialog was closed after save');
       console.log(result);
-      this.strategyService.updateEventGroupsInStrategy(result.id, result.joinStrategyEventGroups.map(a => a.eventGroup.id)).subscribe(response => {
-        this.getAllStrategy();
-      })
+      if (result) {
+        this.strategyService.updateEventGroupsInStrategy(result.id, result.joinStrategyEventGroups).subscribe(response => {
+          this.getAllStrategy();
+        })
+      }
+      
       // this.strategyService.executeStrategy(result.startFrom, result.startTo, result.symbol, strategy.id).subscribe(response => {
       //   console.log(response);
       //   this.getAllStrategy();

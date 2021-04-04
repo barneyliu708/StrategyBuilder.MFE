@@ -10,7 +10,7 @@ export interface DialogData {
     strategyDescription: string;
     startFrom: Date;
     startTo: Date;
-    symbol: string;
+    symbolList: string[];
   }
 
 @Component({
@@ -19,7 +19,7 @@ export interface DialogData {
   })
   export class StrategyExecuteDialog implements OnInit {
   
-    symbolList: string[]
+    //symbolList: string[]
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
     constructor(
@@ -27,7 +27,7 @@ export interface DialogData {
       @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
   
     ngOnInit(): void {
-      this.symbolList = [];
+      this.data.symbolList = [];
     }
   
     onNoClick(): void {
@@ -40,7 +40,7 @@ export interface DialogData {
   
       // Add our fruit
       if ((value || '').trim()) {
-        this.symbolList.push(value.trim());
+        this.data.symbolList.push(value.trim());
       }
   
       // Reset the input value
@@ -50,10 +50,10 @@ export interface DialogData {
     }
   
     remove(symbol: string): void {
-      const index = this.symbolList.indexOf(symbol);
+      const index = this.data.symbolList.indexOf(symbol);
   
       if (index >= 0) {
-        this.symbolList.splice(index, 1);
+        this.data.symbolList.splice(index, 1);
       }
     }
   }

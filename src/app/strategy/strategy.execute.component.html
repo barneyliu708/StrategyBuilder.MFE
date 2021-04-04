@@ -5,7 +5,7 @@
   <mat-form-field appearance="fill" style="display: block">
     <mat-label>Symbol</mat-label>
     <mat-chip-list #chipList aria-label="Symbol selection">
-      <mat-chip *ngFor="let symbol of symbolList" selectable="true"
+      <mat-chip *ngFor="let symbol of data.symbolList" selectable="true"
                removable="true" (removed)="remove(symbol)">
         {{symbol}}
         <mat-icon matChipRemove >cancel</mat-icon>

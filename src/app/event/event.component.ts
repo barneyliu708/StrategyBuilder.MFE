@@ -55,6 +55,9 @@ export class EventComponent implements OnInit {
       console.log(updatedEventGroupd);
 
       if (updatedEventGroupd) {
+        this.eventService.updateEventGroup(updatedEventGroupd).subscribe(response => {
+          console.log(response);
+        });
         this.eventService.updateEventsForEventGroup(updatedEventGroupd.id.toString(), updatedEventGroupd.events).subscribe(response => {
           console.log(response);
         });
