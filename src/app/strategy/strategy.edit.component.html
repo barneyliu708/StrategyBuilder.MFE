@@ -40,6 +40,10 @@
             <mat-option value="sell">Sell</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Percentage %</mat-label>
+          <input matInput [(ngModel)]="relationship.percentage">
+        </mat-form-field>
         <!-- <p style="color: gainsboro;">{{ eventgroup.description }}</p> -->
     </mat-list-option>
   </mat-list> 

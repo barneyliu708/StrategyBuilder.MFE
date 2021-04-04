@@ -5,5 +5,6 @@ export class StrategyEventGroup {
     strategyId: number
     eventGroup: EventGroup
     afterDays: number
+    percentage: number
     action: string
 }
