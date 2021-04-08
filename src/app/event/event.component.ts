@@ -23,7 +23,15 @@ export class EventComponent implements OnInit {
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.eventService.getAllEventGroups().subscribe((data: EventGroup[]) => this.eventgroupList = data);
+    this.eventService.getAllEventGroups().subscribe((data: EventGroup[]) => {
+      this.eventgroupList = data;
+      let expression = '${symbo:GOOG}${Comparator:Less}${Indicator:SMA}'
+      let simboreg = new RegExp('.*{symbo:([a-zA-Z]*)}.*')
+      let simbo = expression.match(/.*{symbo:([a-zA-Z]*)}.*/)[1]
+      let comparator = expression.match(/.*{Comparator:([a-zA-Z]*)}.*/)[1]
+      let indicator = expression.match(/.*{Indicator:([a-zA-Z]*)}.*/)[1]
+      console.log(simbo + comparator + indicator);
+    });
     this.indicatorService.getAllIndicators().subscribe((data: Indicator[]) => this.indicatorList = data);
   }
 
