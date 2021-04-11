@@ -34,8 +34,8 @@ export class IndicatorService {
     let resultArry = [];
     expArr.forEach(exp => {
       let idx = indicators.filter(i => i.key === exp)[0];
-      let value = exp.match(/{([a-zA-Z]*):([a-zA-Z]*)}/)[2];
-      let type = exp.match(/{([a-zA-Z]*):([a-zA-Z]*)}/)[1];
+      let value = exp.match(/{([a-zA-Z]*):([a-zA-Z0-9.]*)}/)[2];
+      let type = exp.match(/{([a-zA-Z]*):([a-zA-Z0-9.]*)}/)[1];
       if (type === "Comparator") {
         value = idx.text
       }

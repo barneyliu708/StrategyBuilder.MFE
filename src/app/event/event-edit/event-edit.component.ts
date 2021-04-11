@@ -39,7 +39,7 @@ export class EventEditDialog {
               public dialogRef: MatDialogRef<EventEditDialog>,
               @Inject(MAT_DIALOG_DATA) 
               public data: any,
-              private indicatorService: IndicatorService) {
+              public indicatorService: IndicatorService) {
     this.eventGroup = data.eventGroup;
     this.indicatorList = data.indicatorList;
     this.selectedIndicators = [];
@@ -74,6 +74,11 @@ export class EventEditDialog {
     this.indicatorCtrl.setValue(null);
   }
 
+  onClear() {
+    this.selectedIndicators = [];
+    this.eventGroup.expression = undefined;
+  }
+
   onAddIndicator(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -84,7 +89,12 @@ export class EventEditDialog {
     if ((value || '').trim()) {
       let newIndicator = new Indicator();
       newIndicator.text = value.trim();
-      newIndicator.key = '{Symbol:' + value.trim() + '}';
+      if(!isNaN(+value.trim())) {
+        newIndicator.key = '{Number:' + value.trim() + '}';
+      } else {
+        newIndicator.key = '{Symbol:' + value.trim() + '}';
+      }
+      
       console.log('add successfully');
       this.selectedIndicators.push(newIndicator);
       this.eventGroup.expression = this.indicatorService.convertIndicatorsToExpression(this.selectedIndicators);
