@@ -74,9 +74,13 @@ export class EventEditDialog {
     this.indicatorCtrl.setValue(null);
   }
 
-  onClear() {
+  onClearIndicators() {
     this.selectedIndicators = [];
     this.eventGroup.expression = undefined;
+  }
+
+  onClearEvents() {
+    this.eventGroup.events = [];
   }
 
   onAddIndicator(event: MatChipInputEvent): void {

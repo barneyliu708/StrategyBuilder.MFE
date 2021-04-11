@@ -59,7 +59,7 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <button mat-button (click)="onClear()">Clear</button>
+    <button mat-button (click)="onClearIndicators()">Clear</button>
     <button mat-raised-button color="primary" (click)="onExecuteExpression()">Execute Expression</button>
   </div>
   
@@ -99,6 +99,7 @@
     <mat-datepicker-toggle matSuffix [for]="dpevent"></mat-datepicker-toggle>
     <mat-datepicker #dpevent></mat-datepicker>
   </mat-form-field>
+  <button mat-button (click)="onClearEvents()">Clear</button>
   <!-- <mat-form-field appearance="fill" style="display: block">
     <mat-label>Verbose datepicker</mat-label>
     <input matInput [matDatepicker]="dpto" [(ngModel)]=data.startTo>
