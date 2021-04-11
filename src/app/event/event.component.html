@@ -13,8 +13,8 @@
         <mat-card-title>{{ eventgroup.name }}</mat-card-title>
         <mat-card-subtitle>{{ eventgroup.description}}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        Expression: {{eventgroup.expression}}
+      <mat-card-content *ngIf="eventgroup.expression">
+        Expression: {{indicatorService.getExpressionForDisplay(eventgroup.expression, indicatorList)}}
       </mat-card-content>
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>

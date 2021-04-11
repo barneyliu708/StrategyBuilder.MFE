@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/services/event/event.service';
+import { IndicatorService } from 'src/app/shared/services/indicator/indicator.service';
 
 @Component({
   selector: 'event-edit',
@@ -27,6 +28,8 @@ export class EventEditDialog {
   isExpressionEnabled: boolean;
   selectedFiles: any;
   stock: any;
+  dateFrom: Date;
+  dateTo: Date;
 
   indicatorCtrl = new FormControl();
   @ViewChild('indicatorInput') indicatorInput: ElementRef<HTMLInputElement>;
@@ -36,7 +39,7 @@ export class EventEditDialog {
               public dialogRef: MatDialogRef<EventEditDialog>,
               @Inject(MAT_DIALOG_DATA) 
               public data: any,
-              private eventService: EventService) {
+              private indicatorService: IndicatorService) {
     this.eventGroup = data.eventGroup;
     this.indicatorList = data.indicatorList;
     this.selectedIndicators = [];
@@ -65,7 +68,7 @@ export class EventEditDialog {
   onSelecteIndicator(event: MatAutocompleteSelectedEvent): void {
     console.log(event);
     this.selectedIndicators.push(event.option.value);
-    this.eventGroup.expression = this.eventService.convertIndicatorsToExpression(this.selectedIndicators);
+    this.eventGroup.expression = this.indicatorService.convertIndicatorsToExpression(this.selectedIndicators);
     
     this.indicatorInput.nativeElement.value = '';
     this.indicatorCtrl.setValue(null);
@@ -81,10 +84,10 @@ export class EventEditDialog {
     if ((value || '').trim()) {
       let newIndicator = new Indicator();
       newIndicator.text = value.trim();
-      newIndicator.key = '${symbo:' + value.trim() + '}';
+      newIndicator.key = '{Symbol:' + value.trim() + '}';
       console.log('add successfully');
       this.selectedIndicators.push(newIndicator);
-      this.eventGroup.expression = this.eventService.convertIndicatorsToExpression(this.selectedIndicators);
+      this.eventGroup.expression = this.indicatorService.convertIndicatorsToExpression(this.selectedIndicators);
     }
 
     // Reset the input value
@@ -97,6 +100,12 @@ export class EventEditDialog {
 
   selectFile(event) {
     this.selectedFiles = event.target.files;
+  }
+
+  onExecuteExpression() {
+    this.indicatorService.executeExpression(this.dateFrom, this.dateTo, this.eventGroup.expression).subscribe(response => {
+      this.eventGroup.events = response;
+    })
   }
 
   private _filter(value: string): Indicator[] {

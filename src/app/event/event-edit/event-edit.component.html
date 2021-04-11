@@ -18,7 +18,22 @@
               cdkAutosizeMinRows="1"
               cdkAutosizeMaxRows="5"></textarea>
   </mat-form-field> -->
-  <div *ngIf="isExpressionEnabled">
+  <div *ngIf="isExpressionEnabled" style="padding-bottom: 10px;">
+    <mat-card-content *ngIf="eventGroup.expression">
+      Expression: {{indicatorService.getExpressionForDisplay(eventGroup.expression, indicatorList)}}
+    </mat-card-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="dpfrom" [(ngModel)]=dateFrom>
+      <mat-datepicker-toggle matSuffix [for]="dpfrom"></mat-datepicker-toggle>
+      <mat-datepicker #dpfrom></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="dpto" [(ngModel)]=dateTo>
+      <mat-datepicker-toggle matSuffix [for]="dpto"></mat-datepicker-toggle>
+      <mat-datepicker #dpto></mat-datepicker>
+    </mat-form-field>
     <mat-form-field class="example-chip-list" style="display: block">
       <mat-label>Expression</mat-label>
       <mat-chip-list #chipList aria-label="Fruit selection">
@@ -44,6 +59,7 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onExecuteExpression()">Execute Expression</button>
   </div>
   
   <!-- <div *ngIf="isExpressionEnabled">

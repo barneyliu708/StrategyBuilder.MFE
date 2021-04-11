@@ -27,12 +27,11 @@ export class EventService {
   }
 
   convertIndicatorsToExpression(indicators: Indicator[]): string {
-    let expression = '';
-
+    let array = [];
     indicators.forEach(indicator => {
-      expression += indicator.key;
+      array.push(indicator.key);
     })
 
-    return expression;
+    return array.join(';');
   }
 }

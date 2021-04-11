@@ -19,13 +19,13 @@ export class EventComponent implements OnInit {
   indicatorList: Indicator[];
   
   constructor(private eventService: EventService,
-              private indicatorService: IndicatorService,
+              public indicatorService: IndicatorService,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.eventService.getAllEventGroups().subscribe((data: EventGroup[]) => {
       this.eventgroupList = data;
-      let expression = '${symbo:GOOG}${Comparator:Less}${Indicator:SMA}'
+      let expression = '{symbo:GOOG};{Comparator:Less};{Indicator:SMA}'
       let simboreg = new RegExp('.*{symbo:([a-zA-Z]*)}.*')
       let simbo = expression.match(/.*{symbo:([a-zA-Z]*)}.*/)[1]
       let comparator = expression.match(/.*{Comparator:([a-zA-Z]*)}.*/)[1]
@@ -70,6 +70,8 @@ export class EventComponent implements OnInit {
           console.log(response);
         });
       }
+
+      this.ngOnInit();
     });
   }
 }
