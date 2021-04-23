@@ -35,11 +35,20 @@ export class EventComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe((result: DialogData) => {
+    dialogRef.afterClosed().subscribe((result: any) => {
       console.log('The new event dialog was closed ');
       console.log(result);
-
-      // this.eventService.updateEventsForEventGroup()
+      result.CreatedBy = {
+        encryptedPassword: "test123",
+        eventGroups: null,
+        id: 1,
+        secretKey: "test123",
+        strategies: [],
+        username: "testusername123"
+      }
+      this.eventService.addEventGroup(result).subscribe(response => {
+        console.log(response);
+      });
     });
   }
 
@@ -64,8 +73,6 @@ export class EventComponent implements OnInit {
           console.log(response);
         });
       }
-
-      this.ngOnInit();
     });
   }
 }

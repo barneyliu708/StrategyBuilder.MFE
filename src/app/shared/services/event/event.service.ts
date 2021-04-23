@@ -22,16 +22,11 @@ export class EventService {
     return this.http.put(`EventGroup/${eventgoupid}/events`, datetimeList);
   }
 
-  updateEventGroup(eventGroup: EventGroup): Observable<any> {
-    return this.http.put(`EventGroup/${eventGroup.id}`, eventGroup);
+  addEventGroup(eventGroup: EventGroup): Observable<any> {
+    return this.http.post('EventGroup', eventGroup);
   }
 
-  convertIndicatorsToExpression(indicators: Indicator[]): string {
-    let array = [];
-    indicators.forEach(indicator => {
-      array.push(indicator.key);
-    })
-
-    return array.join(';');
+  updateEventGroup(eventGroup: EventGroup): Observable<any> {
+    return this.http.put(`EventGroup/${eventGroup.id}`, eventGroup);
   }
 }

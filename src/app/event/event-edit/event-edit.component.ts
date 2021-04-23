@@ -65,6 +65,13 @@ export class EventEditDialog {
     });
   }
 
+  onIsExpressionEnabledChange(newValue){
+    console.log(newValue);
+    if (this.isExpressionEnabled === false) {
+      this.eventGroup.expression = undefined;
+    }
+  }
+
   onSelecteIndicator(event: MatAutocompleteSelectedEvent): void {
     console.log(event);
     this.selectedIndicators.push(event.option.value);

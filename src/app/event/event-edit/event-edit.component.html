@@ -9,7 +9,7 @@
     <textarea matInput cdkTextareaAutosize [(ngModel)]="eventGroup.description"></textarea>
   </mat-form-field>
   <div style="padding: 5px;">
-    <mat-slide-toggle [(ngModel)]="isExpressionEnabled">Enable Expression</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="isExpressionEnabled" (click)="onIsExpressionEnabledChange($event)">Enable Expression</mat-slide-toggle>
   </div>
   <!-- <mat-form-field *ngIf="isExpressionEnabled" appearance="fill" style="display: block">
     <mat-label>Expression:</mat-label>
@@ -46,7 +46,7 @@
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
         <input
-          placeholder="New fruit..."
+          placeholder="expression..."
           #indicatorInput
           [matAutocomplete]="auto"
           [matChipInputFor]="chipList"
@@ -131,7 +131,7 @@
         </mat-list-option>
     </mat-list>
   </mat-card-content>
-  <mat-form-field class="columns">
+  <mat-form-field class="columns" *ngIf="false">
     <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
     <ng-template #newFile>
         <mat-label>Choose file to be imported</mat-label>

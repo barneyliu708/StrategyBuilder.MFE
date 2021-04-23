@@ -46,6 +46,7 @@ import { StrategyService } from '../shared/services/strategy/strategy.service';
       if(itemToAddIndex === -1){
         let newrelationship = new StrategyEventGroup();
         newrelationship.eventGroup = valueSelected;
+        newrelationship.eventGroupId = valueSelected.id;
         this.strategy.joinStrategyEventGroups.push(newrelationship);
       }
       console.log(valueSelected);
